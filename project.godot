@@ -19,7 +19,6 @@ config/icon="res://fb_icon.png"
 
 window/size/viewport_width=288
 window/size/viewport_height=512
-window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 
 [input]
