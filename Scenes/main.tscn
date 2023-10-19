@@ -15,7 +15,6 @@ texture = ExtResource("2_gckqh")
 metadata/_edit_lock_ = true
 
 [node name="Bird" parent="." instance=ExtResource("1_gsb2l")]
-sleeping = false
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
