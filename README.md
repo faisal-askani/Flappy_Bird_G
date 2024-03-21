@@ -1,6 +1,6 @@
 # Flappy Bird Game for Android
 
-Note: Project Not Complete yet, Working In Progress!
+**Note: Project not complete yet, work in progress!**
 
 This is a simple implementation of the classic Flappy Bird game for Android, built using the Godot game engine. The game features the familiar gameplay of navigating a bird through obstacles by tapping the screen to make the bird flap its wings.
 
