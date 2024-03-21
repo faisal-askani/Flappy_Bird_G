@@ -35,3 +35,8 @@ git clone https://github.com/faisal-askani/Flappy_Bird_G.git
 ## Credits
 
 This game is developed by [Faisal Askani](https://github.com/faisal-askani) as a simple project to learn game development with Godot.
+
+## License
+
+This project is licensed under the MIT License.
+
