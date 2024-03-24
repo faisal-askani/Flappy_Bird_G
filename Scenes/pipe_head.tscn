@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://l6mc5hv3wwc4"]
+
+[ext_resource type="Script" path="res://Scripts/pipe.gd" id="1_jdbtl"]
+[ext_resource type="Texture2D" uid="uid://bfgb3ic7iuteq" path="res://Assets/sprites/pipe-head.png" id="2_7bwga"]
+
+[node name="PipeHead" type="Area2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_jdbtl")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7bwga")
+offset = Vector2(0, 13)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered" flags=18]

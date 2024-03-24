@@ -10,18 +10,22 @@ size = Vector2(336, 17)
 size = Vector2(336, 8)
 
 [node name="Ground" type="StaticBody2D"]
+z_index = 6
 script = ExtResource("1_eklrh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.15, 2.15)
 texture = ExtResource("1_k2lxb")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -45.5)
+position = Vector2(0, -98.5)
+scale = Vector2(2.15, 2.15)
 shape = SubResource("RectangleShape2D_hmr0a")
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(2.15, 2.15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -52)
