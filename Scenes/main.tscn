@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://7soia3snnc1i"]
+[gd_scene load_steps=7 format=3 uid="uid://7soia3snnc1i"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2kf57"]
 [ext_resource type="PackedScene" uid="uid://brrpukuikl5q6" path="res://Scenes/bird.tscn" id="1_gsb2l"]
 [ext_resource type="Texture2D" uid="uid://dc8iw1c0sdo8j" path="res://Assets/sprites/background-day.png" id="2_gckqh"]
 [ext_resource type="PackedScene" uid="uid://b5csp6f6q7miy" path="res://Scenes/ground.tscn" id="3_f4c46"]
+[ext_resource type="FontFile" uid="uid://bmumxkv0cslay" path="res://Font/flappy-font.ttf" id="5_vbd4g"]
+[ext_resource type="Script" path="res://Scenes/ScoreLabel.gd" id="6_0own2"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2kf57")
@@ -88,3 +90,25 @@ offset_right = 1080.0
 offset_bottom = 592.0
 color = Color(0.262821, 0.686366, 0.396185, 1)
 metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.5
+offset_top = 77.0
+offset_right = 28.5
+offset_bottom = 181.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("5_vbd4g")
+theme_override_font_sizes/font_size = 100
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("6_0own2")

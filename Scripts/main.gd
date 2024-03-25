@@ -3,6 +3,7 @@ extends Node2D
 @export var ground_speed = -350
 
 @onready var bird = $Bird as Bird
+@onready var score_label = $CanvasLayer/ScoreLabel as Score
 @onready var timer = Timer.new()
 
 var pipe_scene = preload("res://Scenes/pipe.tscn")
@@ -60,6 +61,7 @@ func _create_pipes():
 	var pipe_head_bottom = pipe_head_scene.instantiate()
 	var pipe_head_top = pipe_head_scene.instantiate()
 	
+	top_pipe.score_sig.connect(score_label.on_score)
 	top_pipe_out_screen.connect("pipe_hit_sig", _stop)
 	top_pipe.connect("pipe_hit_sig", _stop)
 	bottom_pipe.connect("pipe_hit_sig", _stop)
