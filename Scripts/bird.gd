@@ -7,7 +7,7 @@ signal bird_jumped_sig
 const JUMP_FORCE = -750.0
 
 @export var falling_rotation_speed = 5
-@export var rising_rotation_speed = 25
+@export var rising_rotation_speed = 20
 
 @onready var anim = $AnimationPlayer
 
@@ -22,17 +22,17 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("jump") and is_start:
 		if !bird_jumped:
+			anim.play("Flap")
 			bird_jumped_sig.emit()
 			bird_jumped = true
-	
 		start_rotation = true
-		anim.play("Flap")
 		_jump()
 	
 	if start_rotation:
 		_bird_rotation()
 	move_and_collide(linear_velocity * delta)
 	#print("Velocity: ",linear_velocity.y," Freeze: ",freeze)
+
 
 func _jump():
 	set_linear_velocity(Vector2(0.0, JUMP_FORCE))
@@ -43,7 +43,7 @@ func _bird_rotation():
 	if linear_velocity.y > 0 and rad_to_deg(rotation) < 90:
 		rotation += falling_rotation_speed * deg_to_rad(1.3)
 	elif linear_velocity.y < 0 and rad_to_deg(rotation) > -30:
-		rotation -= rising_rotation_speed * deg_to_rad(1.3)
+		rotation = deg_to_rad(-30)
 
 
 func pipe_hit():

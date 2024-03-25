@@ -2,8 +2,6 @@ extends Node2D
 
 @export var ground_speed = -350
 
-@onready var ground_1 = $Ground1
-@onready var ground_2 = $Ground2
 @onready var bird = $Bird as Bird
 @onready var timer = Timer.new()
 
@@ -19,8 +17,8 @@ var is_stop = false
 
 
 func _ready():
-	ground_1.connect("bird_crashed", _stop)
-	ground_2.connect("bird_crashed", _stop)
+	for ground in get_children().filter(func (child): return child is Ground):
+		ground.connect("bird_crashed", _stop)
 	bird.bird_jumped_sig.connect(_start)
 	
 	timer.wait_time = 1.4
@@ -35,7 +33,6 @@ func _process(delta):
 
 func _move_ground(delta):
 	for ground in get_children().filter(func (child): return child is Ground):
-#		(ground as Ground).is_start = false
 		if ground.position.x <= -1440:
 			ground.position.x = 1440
 		ground.position.x += ground_speed * delta
