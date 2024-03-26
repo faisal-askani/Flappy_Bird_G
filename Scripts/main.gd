@@ -23,7 +23,7 @@ func _ready():
 	bird.bird_jumped_sig.connect(_start)
 	
 	timer.wait_time = 1.4
-	timer.connect("timeout",_create_pipes)
+	timer.connect("timeout", _create_pipes)
 	add_child(timer)
 
 

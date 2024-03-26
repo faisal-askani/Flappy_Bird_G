@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqlmkibxrnfmf"
-path="res://.godot/imported/message.png-e1ccb93441243230c1042d782d5a63d2.ctex"
+uid="uid://dg7wpf0hu8b1g"
+path="res://.godot/imported/tap.png-49853d446de648d37c81efd1ae472fef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/message.png"
-dest_files=["res://.godot/imported/message.png-e1ccb93441243230c1042d782d5a63d2.ctex"]
+source_file="res://Assets/sprites/tap.png"
+dest_files=["res://.godot/imported/tap.png-49853d446de648d37c81efd1ae472fef.ctex"]
 
 [params]
 
