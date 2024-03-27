@@ -32,10 +32,6 @@ git clone https://github.com/faisal-askani/Flappy_Bird_G.git
 - In the Godot editor, click the "Play" button to run the game.
 - Alternatively, you can export the game to your desired platform using Godot's export features.
 
-## Credits
-
-This game is developed by [Faisal Askani](https://github.com/faisal-askani) as a simple project to learn game development with Godot.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
