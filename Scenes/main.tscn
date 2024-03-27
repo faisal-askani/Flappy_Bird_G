@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7soia3snnc1i"]
+[gd_scene load_steps=20 format=3 uid="uid://7soia3snnc1i"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2kf57"]
 [ext_resource type="PackedScene" uid="uid://brrpukuikl5q6" path="res://Scenes/bird.tscn" id="1_gsb2l"]
@@ -6,36 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://b5csp6f6q7miy" path="res://Scenes/ground.tscn" id="3_f4c46"]
 [ext_resource type="FontFile" uid="uid://bmumxkv0cslay" path="res://Font/flappy-font.ttf" id="5_vbd4g"]
 [ext_resource type="Script" path="res://Scripts/ScoreLabel.gd" id="6_dj7ub"]
+[ext_resource type="Texture2D" uid="uid://dlr16scvnkihr" path="res://Assets/sprites/panel_score.png" id="7_8svgs"]
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="7_jr8u4"]
 [ext_resource type="Script" path="res://Scripts/tap_anim.gd" id="7_s64to"]
 [ext_resource type="Texture2D" uid="uid://da6qrnq8ywent" path="res://Assets/sprites/flappy bird title.png" id="8_encnj"]
+[ext_resource type="Texture2D" uid="uid://blnmsvwwviwak" path="res://Assets/sprites/button_play_normal.png" id="8_nbicj"]
 [ext_resource type="Texture2D" uid="uid://dg7wpf0hu8b1g" path="res://Assets/sprites/tap.png" id="8_sywjx"]
-
-[sub_resource type="Animation" id="Animation_0bdhg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Tap/TapTexture:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Tap/TileTexture:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
+[ext_resource type="Texture2D" uid="uid://dtsndw4d0c43d" path="res://Assets/sprites/button_play_pressed.png" id="9_82rli"]
+[ext_resource type="Texture2D" uid="uid://csrbotph5eb05" path="res://Assets/sprites/button_score_normal.png" id="9_ls11t"]
+[ext_resource type="Script" path="res://Scripts/play_btn.gd" id="11_28abh"]
+[ext_resource type="Texture2D" uid="uid://dw3hhv6i45nxx" path="res://Assets/sprites/button_score_pressed.png" id="11_t6s2c"]
 
 [sub_resource type="Animation" id="Animation_41mn8"]
 resource_name = "FadeOut"
@@ -63,6 +43,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0bdhg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Tap/TapTexture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Tap/TileTexture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hrqc0"]
@@ -187,6 +194,66 @@ text = "0"
 horizontal_alignment = 1
 script = ExtResource("6_dj7ub")
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -410.0
+offset_right = 264.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_jr8u4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.960784, 0.729412, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.321431, 0.215427, 0.278447, 1)
+theme_override_colors/font_outline_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 31
+theme_override_fonts/font = ExtResource("5_vbd4g")
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Separetor" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreBoardTexture" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 282.5)
+layout_mode = 2
+texture = ExtResource("7_8svgs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 27
+
+[node name="PlayButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 150)
+layout_mode = 2
+texture_normal = ExtResource("8_nbicj")
+texture_pressed = ExtResource("9_82rli")
+stretch_mode = 0
+script = ExtResource("11_28abh")
+
+[node name="ScoreButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 150)
+layout_mode = 2
+texture_normal = ExtResource("9_ls11t")
+texture_pressed = ExtResource("11_t6s2c")
+stretch_mode = 0
+
 [node name="Tap" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 8
@@ -240,4 +307,6 @@ libraries = {
 "": SubResource("AnimationLibrary_hrqc0")
 }
 
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" method="_on_pressed"]
+[connection signal="animation_finished" from="CanvasLayer/Tap/AnimationPlayer" to="Ground1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Tap/AnimationPlayer" to="CanvasLayer/Tap" method="_on_animation_player_animation_finished"]

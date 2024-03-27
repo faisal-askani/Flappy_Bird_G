@@ -3,6 +3,7 @@ extends RigidBody2D
 class_name Bird
 
 signal bird_jumped_sig
+signal bird_hit_pipe
 
 const JUMP_FORCE = -750.0
 
@@ -52,6 +53,7 @@ func pipe_hit():
 	anim.pause()
 	if is_start: set_linear_velocity(Vector2(0.0, 0.0))
 	is_start = false
+	bird_hit_pipe.emit()
 
 
 func stop():
