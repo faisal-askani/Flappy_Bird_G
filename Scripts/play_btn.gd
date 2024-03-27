@@ -2,4 +2,5 @@ extends TextureButton
 
 
 func _on_pressed():
-	get_tree().reload_current_scene()
+	scene_manager.on_scene_change(scene_manager.MAIN_SCENE)
+

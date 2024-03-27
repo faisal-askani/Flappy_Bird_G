@@ -32,7 +32,6 @@ func _process(delta):
 	if start_rotation:
 		_bird_rotation()
 	move_and_collide(linear_velocity * delta)
-	#print("Velocity: ",linear_velocity.y," Freeze: ",freeze)
 
 
 func _jump():

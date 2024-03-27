@@ -37,19 +37,9 @@ func _move_ground(delta):
 		if ground.position.x <= -1440:
 			ground.position.x = 1440
 		ground.position.x += ground_speed * delta
-		
-#	if ground_1.position.x <= -1440:
-#		ground_1.position.x = 1440
-#	if ground_2.position.x <= -720:
-#		ground_2.position.x = 720
-#	ground_1.position.x += ground_speed * delta
-#	ground_2.position.x += ground_speed * delta
 
 
 func _pipe_calculation():
-#	var min_height = 1 + gap_size * 0.5
-#	var max_height = total_height - min_height 
-	#var height = random_height.randf_range(min_height, max_height)
 	var height = (float(randi() % ((max_value - min_value) / 5 + 1) * 5 + min_value)) / 10.0
 	return height
 
