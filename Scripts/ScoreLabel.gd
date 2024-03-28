@@ -2,10 +2,26 @@ extends Label
 
 class_name Score
 
-var count_score = 0
+@onready var _bird = $"../../Bird"
+var is_hit = false
+
+func _ready():
+	_bird.connect("bird_hit_pipe", _check_high_score)
+	var children_nodes = get_tree().get_root().get_node("Main").get_children()
+	for ground in children_nodes.filter(func (child): return child is Ground):
+		ground.connect("bird_crashed", _check_high_score)
+	Global.score = 0
+	print("Onready: Score is ", Global.score, " High score is ", Global.save_data_g.high_score)
 
 func on_score():
-	count_score += 1
-	set_text(String.num(count_score))
-	print("Score is ", count_score)
+	Global.score += 1
+	set_text(String.num(Global.score))
+	print("Score is ", Global.score)
 
+func _check_high_score():
+	if !is_hit:
+		is_hit = true
+		if Global.score > Global.save_data_g.high_score:
+			Global.save_data_g.high_score = Global.score
+			Global.save_data_g.save()
+		print("When hit: Score is ", Global.score, " High score is ", Global.save_data_g.high_score)
