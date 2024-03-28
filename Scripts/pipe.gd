@@ -8,7 +8,6 @@ signal score_sig
 var is_start = true
 var pipe_cross = true
 
-
 func _process(delta):
 	if is_start:
 		position.x += -350 * delta
@@ -22,7 +21,6 @@ func _on_body_entered(body):
 		pipe_hit_sig.emit()
 		(body as Bird).pipe_hit()
 		print("Bird Collide Pipe")
-
 
 func _destroy_pipe():
 	if position.x < -720:

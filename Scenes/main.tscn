@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://7soia3snnc1i"]
+[gd_scene load_steps=21 format=3 uid="uid://7soia3snnc1i"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2kf57"]
 [ext_resource type="PackedScene" uid="uid://brrpukuikl5q6" path="res://Scenes/bird.tscn" id="1_gsb2l"]
@@ -9,13 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://dlr16scvnkihr" path="res://Assets/sprites/panel_score.png" id="7_8svgs"]
 [ext_resource type="Script" path="res://Scripts/game_over.gd" id="7_jr8u4"]
 [ext_resource type="Script" path="res://Scripts/tap_anim.gd" id="7_s64to"]
-[ext_resource type="Texture2D" uid="uid://da6qrnq8ywent" path="res://Assets/sprites/flappy bird title.png" id="8_encnj"]
+[ext_resource type="Texture2D" uid="uid://dj2rgew6tbl33" path="res://Assets/sprites/gameover.png" id="8_4lyvl"]
 [ext_resource type="Texture2D" uid="uid://blnmsvwwviwak" path="res://Assets/sprites/button_play_normal.png" id="8_nbicj"]
 [ext_resource type="Texture2D" uid="uid://dg7wpf0hu8b1g" path="res://Assets/sprites/tap.png" id="8_sywjx"]
 [ext_resource type="Texture2D" uid="uid://dtsndw4d0c43d" path="res://Assets/sprites/button_play_pressed.png" id="9_82rli"]
 [ext_resource type="Texture2D" uid="uid://csrbotph5eb05" path="res://Assets/sprites/button_score_normal.png" id="9_ls11t"]
 [ext_resource type="Script" path="res://Scripts/play_btn.gd" id="11_28abh"]
 [ext_resource type="Texture2D" uid="uid://dw3hhv6i45nxx" path="res://Assets/sprites/button_score_pressed.png" id="11_t6s2c"]
+[ext_resource type="Texture2D" uid="uid://k5lu2p75pgxb" path="res://Assets/sprites/label_get_ready.png" id="15_vkttn"]
 
 [sub_resource type="Animation" id="Animation_41mn8"]
 resource_name = "FadeOut"
@@ -86,6 +87,7 @@ metadata/_edit_horizontal_guides_ = [512.0, 640.0, 576.0, -640.0, 552.0]
 [node name="Backgrounds" type="Node2D" parent="."]
 position = Vector2(-1.52588e-05, -3.05176e-05)
 scale = Vector2(2.5, 2.5)
+metadata/_edit_lock_ = true
 
 [node name="Background1" type="Sprite2D" parent="Backgrounds"]
 texture = ExtResource("2_gckqh")
@@ -102,8 +104,10 @@ texture = ExtResource("2_gckqh")
 metadata/_edit_lock_ = true
 
 [node name="Bird" parent="." instance=ExtResource("1_gsb2l")]
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = 9
 metadata/_edit_lock_ = true
 
 [node name="Ground1" parent="." instance=ExtResource("3_f4c46")]
@@ -133,6 +137,7 @@ offset_left = -1080.0
 offset_top = -1664.0
 offset_right = -1040.0
 offset_bottom = -1624.0
+metadata/_edit_lock_ = true
 
 [node name="ColorRectBlue" type="ColorRect" parent="AdjustmentColors"]
 z_index = -1
@@ -193,8 +198,9 @@ theme_override_font_sizes/font_size = 100
 text = "0"
 horizontal_alignment = 1
 script = ExtResource("6_dj7ub")
+metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="GameOver" type="MarginContainer" parent="CanvasLayer"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -208,38 +214,31 @@ offset_bottom = 320.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_jr8u4")
+metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOver"]
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="GameOverLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="TileTexture" type="TextureRect" parent="CanvasLayer/GameOver/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.960784, 0.729412, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.321431, 0.215427, 0.278447, 1)
-theme_override_colors/font_outline_color = Color(0.94902, 0.94902, 0.94902, 1)
-theme_override_constants/outline_size = 10
-theme_override_constants/shadow_outline_size = 31
-theme_override_fonts/font = ExtResource("5_vbd4g")
-theme_override_font_sizes/font_size = 100
-text = "Game Over"
-horizontal_alignment = 1
+size_flags_vertical = 3
+texture = ExtResource("8_4lyvl")
 
-[node name="Separetor" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="Separetor" type="Control" parent="CanvasLayer/GameOver/VBoxContainer"]
 layout_mode = 2
 
-[node name="ScoreBoardTexture" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="ScoreBoardTexture" type="TextureRect" parent="CanvasLayer/GameOver/VBoxContainer"]
 custom_minimum_size = Vector2(0, 282.5)
 layout_mode = 2
 texture = ExtResource("7_8svgs")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameOver/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 27
 
-[node name="PlayButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="PlayButton" type="TextureButton" parent="CanvasLayer/GameOver/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 150)
 layout_mode = 2
 texture_normal = ExtResource("8_nbicj")
@@ -247,7 +246,7 @@ texture_pressed = ExtResource("9_82rli")
 stretch_mode = 0
 script = ExtResource("11_28abh")
 
-[node name="ScoreButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ScoreButton" type="TextureButton" parent="CanvasLayer/GameOver/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 150)
 layout_mode = 2
 texture_normal = ExtResource("9_ls11t")
@@ -268,6 +267,7 @@ offset_bottom = -640.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_s64to")
+metadata/_edit_lock_ = true
 
 [node name="TileTexture" type="TextureRect" parent="CanvasLayer/Tap"]
 layout_mode = 1
@@ -283,7 +283,7 @@ offset_bottom = 273.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture = ExtResource("8_encnj")
+texture = ExtResource("15_vkttn")
 
 [node name="TapTexture" type="TextureRect" parent="CanvasLayer/Tap"]
 layout_mode = 1
@@ -307,6 +307,6 @@ libraries = {
 "": SubResource("AnimationLibrary_hrqc0")
 }
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOver/VBoxContainer/HBoxContainer/PlayButton" to="CanvasLayer/GameOver/VBoxContainer/HBoxContainer/PlayButton" method="_on_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Tap/AnimationPlayer" to="Ground1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Tap/AnimationPlayer" to="CanvasLayer/Tap" method="_on_animation_player_animation_finished"]

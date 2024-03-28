@@ -6,7 +6,6 @@ const MAIN_SCENE = "res://Scenes/main.tscn"
 @onready var _anim = $anim
 @onready var _flash_frame = $ColorRect
 
-
 func on_scene_change(scene):
 	_flash_frame.show()
 	
