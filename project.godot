@@ -17,9 +17,9 @@ config/icon="res://fb_icon.png"
 
 [autoload]
 
+scene_manager="*res://Scenes/scene_manager.tscn"
 save_data="*res://Scripts/save_data.gd"
 Global="*res://Scripts/global.gd"
-scene_manager="*res://Scenes/scene_manager.tscn"
 
 [display]
 
