@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://7soia3snnc1i"]
+[gd_scene load_steps=35 format=3 uid="uid://7soia3snnc1i"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2kf57"]
 [ext_resource type="PackedScene" uid="uid://brrpukuikl5q6" path="res://Scenes/bird.tscn" id="1_gsb2l"]
@@ -22,6 +22,141 @@
 [ext_resource type="Script" path="res://Scripts/medals.gd" id="13_3dqhu"]
 [ext_resource type="Script" path="res://Scripts/new_label.gd" id="13_3ofjf"]
 [ext_resource type="Texture2D" uid="uid://k5lu2p75pgxb" path="res://Assets/sprites/label_get_ready.png" id="15_vkttn"]
+
+[sub_resource type="Animation" id="Animation_6l482"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_omeer"]
+resource_name = "hit_flash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(6, 0.16, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xqq0n"]
+_data = {
+"RESET": SubResource("Animation_6l482"),
+"hit_flash": SubResource("Animation_omeer")
+}
+
+[sub_resource type="Animation" id="Animation_rbtpy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleTexture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleTexture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_56508"]
+resource_name = "gameover_title_popup"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleTexture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.7),
+"transitions": PackedFloat32Array(0.148651, 6.27667, 1),
+"update": 0,
+"values": [Vector2(0, -15), Vector2(0, -30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleTexture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dkvsm"]
+_data = {
+"RESET": SubResource("Animation_rbtpy"),
+"gameover_title_popup": SubResource("Animation_56508")
+}
+
+[sub_resource type="Animation" id="Animation_ebkr1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1000)]
+}
+
+[sub_resource type="Animation" id="Animation_3v477"]
+resource_name = "score_board_popup"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.241485, 0.241485),
+"update": 0,
+"values": [Vector2(0, 1000), Vector2(0, 137)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ugf5u"]
+_data = {
+"RESET": SubResource("Animation_ebkr1"),
+"score_board_popup": SubResource("Animation_3v477")
+}
 
 [sub_resource type="Animation" id="Animation_41mn8"]
 resource_name = "FadeOut"
@@ -87,7 +222,7 @@ _data = {
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2kf57")
 metadata/_edit_vertical_guides_ = [-360.0, 360.0, 720.0, 1080.0, -1080.0, -720.0, 576.0, 208.0]
-metadata/_edit_horizontal_guides_ = [512.0, 632.0, 576.0, -640.0, 552.0]
+metadata/_edit_horizontal_guides_ = [512.0, 632.0, 576.0, -640.0, 552.0, 1280.0]
 
 [node name="Backgrounds" type="Node2D" parent="."]
 position = Vector2(-1.52588e-05, -3.05176e-05)
@@ -205,31 +340,66 @@ horizontal_alignment = 1
 script = ExtResource("6_dj7ub")
 metadata/_edit_lock_ = true
 
-[node name="GameOver" type="MarginContainer" parent="CanvasLayer"]
+[node name="GameOver" type="Control" parent="CanvasLayer"]
 visible = false
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -264.0
-offset_top = -410.0
+offset_top = -365.0
 offset_right = 264.0
-offset_bottom = 320.0
+offset_bottom = 365.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_jr8u4")
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOver"]
-layout_mode = 2
-theme_override_constants/separation = 60
+[node name="HitFlashColor" type="ColorRect" parent="CanvasLayer/GameOver"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(2000, 2000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1112.0
+offset_top = -1000.0
+offset_right = 1112.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TileTexture" type="TextureRect" parent="CanvasLayer/GameOver/VBoxContainer"]
+[node name="HitFlashAnim" type="AnimationPlayer" parent="CanvasLayer/GameOver"]
+root_node = NodePath("../HitFlashColor")
+libraries = {
+"": SubResource("AnimationLibrary_xqq0n")
+}
+
+[node name="TitleTexture" type="TextureRect" parent="CanvasLayer/GameOver"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+offset_top = -15.0
+offset_right = 528.0
+offset_bottom = 103.0
 size_flags_vertical = 3
 texture = ExtResource("8_4lyvl")
 metadata/_edit_lock_ = true
+
+[node name="GameOverTitleAnim" type="AnimationPlayer" parent="CanvasLayer/GameOver"]
+libraries = {
+"": SubResource("AnimationLibrary_dkvsm")
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOver"]
+layout_mode = 2
+offset_top = 1000.0
+offset_right = 528.0
+offset_bottom = 1572.0
+theme_override_constants/separation = 60
 
 [node name="Separetor" type="Control" parent="CanvasLayer/GameOver/VBoxContainer"]
 layout_mode = 2
@@ -337,6 +507,11 @@ texture_normal = ExtResource("9_ls11t")
 texture_pressed = ExtResource("11_t6s2c")
 stretch_mode = 0
 metadata/_edit_lock_ = true
+
+[node name="ScoreBoardAnim" type="AnimationPlayer" parent="CanvasLayer/GameOver"]
+libraries = {
+"": SubResource("AnimationLibrary_ugf5u")
+}
 
 [node name="Tap" type="Control" parent="CanvasLayer"]
 layout_mode = 3

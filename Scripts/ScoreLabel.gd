@@ -11,7 +11,7 @@ var is_hit = false
 func _ready():
 	_game_over.connect("game_over", _check_high_score)
 	Global.score = 0
-	print("Onready: Score is ", Global.score, " High score is ", Global.save_data_g.high_score)
+	print("Onready: Score is:", Global.score, " High score is:", Global.save_data_g.high_score)
 
 func on_score():
 	Global.score += 1
@@ -25,4 +25,4 @@ func _check_high_score():
 			Global.save_data_g.high_score = Global.score
 			Global.save_data_g.save()
 			new_high_score.emit()
-		print("When hit: Score is ", Global.score, " High score is ", Global.save_data_g.high_score)
+		print("When hit: Score is:", Global.score, " High score is:", Global.save_data_g.high_score)
