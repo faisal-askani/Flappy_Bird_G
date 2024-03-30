@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://7soia3snnc1i"]
+[gd_scene load_steps=26 format=3 uid="uid://7soia3snnc1i"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2kf57"]
 [ext_resource type="PackedScene" uid="uid://brrpukuikl5q6" path="res://Scenes/bird.tscn" id="1_gsb2l"]
@@ -18,7 +18,9 @@
 [ext_resource type="Script" path="res://Scripts/play_btn.gd" id="11_28abh"]
 [ext_resource type="Script" path="res://Scripts/b_high_score.gd" id="11_mb7q5"]
 [ext_resource type="Texture2D" uid="uid://dw3hhv6i45nxx" path="res://Assets/sprites/button_score_pressed.png" id="11_t6s2c"]
+[ext_resource type="Texture2D" uid="uid://bdqnk1dqjw86q" path="res://Assets/sprites/label_new.png" id="12_tfeu0"]
 [ext_resource type="Script" path="res://Scripts/medals.gd" id="13_3dqhu"]
+[ext_resource type="Script" path="res://Scripts/new_label.gd" id="13_3ofjf"]
 [ext_resource type="Texture2D" uid="uid://k5lu2p75pgxb" path="res://Assets/sprites/label_get_ready.png" id="15_vkttn"]
 
 [sub_resource type="Animation" id="Animation_41mn8"]
@@ -284,6 +286,23 @@ horizontal_alignment = 2
 script = ExtResource("11_mb7q5")
 metadata/_edit_lock_ = true
 
+[node name="NewHighScore" type="TextureRect" parent="CanvasLayer/GameOver/VBoxContainer/ScoreBoardTexture"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = 3.75
+offset_right = -136.0
+offset_bottom = 36.75
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("12_tfeu0")
+script = ExtResource("13_3ofjf")
+
 [node name="MedalTexture" type="TextureRect" parent="CanvasLayer/GameOver/VBoxContainer/ScoreBoardTexture"]
 layout_mode = 1
 anchors_preset = 4
@@ -320,7 +339,6 @@ stretch_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="Tap" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
