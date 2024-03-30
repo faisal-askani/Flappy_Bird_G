@@ -6,6 +6,7 @@ signal new_high_score
 
 @onready var _bird = $"../../Bird"
 @onready var _game_over = $"../GameOver" as GameOver
+@onready var _point = sound_player.get_node("ScoreAudioStream")
 var is_hit = false
 
 func _ready():
@@ -14,6 +15,7 @@ func _ready():
 	print("Onready: Score is:", Global.score, " High score is:", Global.save_data_g.high_score)
 
 func on_score():
+	_point.play()
 	Global.score += 1
 	set_text(String.num(Global.score))
 	print("Score is ", Global.score)

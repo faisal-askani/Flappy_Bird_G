@@ -8,10 +8,14 @@ signal game_over
 @onready var _score_board_anim = $ScoreBoardAnim
 @onready var _hit_flash_anim = $HitFlashAnim
 @onready var _score_label = $"../ScoreLabel"
+@onready var _V_Box_Container = $VBoxContainer
+@onready var _hurt = sound_player.get_node("HurtAudioStream")
+@onready var _die = sound_player.get_node("DieAudioStream")
 var _is_hit = false
 
 func _ready():
 	print("Game over is called")
+	_V_Box_Container.hide()
 	self.get_parent().get_parent().get_node("Bird").connect("bird_hit_pipe", _on_game_over)
 	var children_nodes = get_tree().get_root().get_node("Main").get_children()
 	for ground in children_nodes.filter(func (child): return child is Ground):
@@ -23,8 +27,11 @@ func _on_game_over():
 		_score_label.hide()
 		show()
 		_hit_flash_anim.play("hit_flash")
+		_hurt.play()
 		await _hit_flash_anim.animation_finished
+		_die.play()
 		_title_anim.play("gameover_title_popup")
 		await _title_anim.animation_finished
+		_V_Box_Container.show()
 		_score_board_anim.play("score_board_popup")
 		game_over.emit()

@@ -11,6 +11,7 @@ const JUMP_FORCE = -750.0
 @export var rising_rotation_speed = 20
 
 @onready var anim = $AnimationPlayer
+@onready var _wing = sound_player.get_node("WingAudioStream")
 
 var is_start = true
 var start_rotation = false
@@ -35,6 +36,7 @@ func _process(delta):
 
 
 func _jump():
+	_wing.play()
 	set_linear_velocity(Vector2(0.0, JUMP_FORCE))
 
 
