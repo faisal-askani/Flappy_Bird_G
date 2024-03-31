@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://7soia3snnc1i"]
+[gd_scene load_steps=36 format=3 uid="uid://7soia3snnc1i"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2kf57"]
 [ext_resource type="PackedScene" uid="uid://brrpukuikl5q6" path="res://Scenes/bird.tscn" id="1_gsb2l"]
 [ext_resource type="Texture2D" uid="uid://dc8iw1c0sdo8j" path="res://Assets/sprites/background-day.png" id="2_gckqh"]
 [ext_resource type="PackedScene" uid="uid://b5csp6f6q7miy" path="res://Scenes/ground.tscn" id="3_f4c46"]
+[ext_resource type="Script" path="res://Scripts/camera_shake.gd" id="4_m6q3c"]
 [ext_resource type="FontFile" uid="uid://bmumxkv0cslay" path="res://Font/flappy-font.ttf" id="5_vbd4g"]
 [ext_resource type="Script" path="res://Scripts/ScoreLabel.gd" id="6_dj7ub"]
 [ext_resource type="Texture2D" uid="uid://dlr16scvnkihr" path="res://Assets/sprites/panel_score.png" id="7_8svgs"]
@@ -249,6 +250,9 @@ metadata/_edit_lock_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 9
 metadata/_edit_lock_ = true
+
+[node name="Node" type="Node" parent="Camera2D"]
+script = ExtResource("4_m6q3c")
 
 [node name="Ground1" parent="." instance=ExtResource("3_f4c46")]
 position = Vector2(-1440, 672)

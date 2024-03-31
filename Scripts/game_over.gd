@@ -3,6 +3,7 @@ extends Control
 class_name GameOver
 
 signal game_over
+signal sig_shake
 
 @onready var _title_anim = $GameOverTitleAnim
 @onready var _score_board_anim = $ScoreBoardAnim
@@ -24,6 +25,7 @@ func _ready():
 func _on_game_over():
 	if !_is_hit:
 		_is_hit = true
+		sig_shake.emit()
 		_score_label.hide()
 		show()
 		_hit_flash_anim.play("hit_flash")

@@ -20,7 +20,6 @@ var bird_jumped = false
 func _ready():
 	anim.play("Idle")
 
-
 func _process(delta):
 	if Input.is_action_just_pressed("jump") and is_start:
 		if !bird_jumped:
@@ -34,11 +33,9 @@ func _process(delta):
 		_bird_rotation()
 	move_and_collide(linear_velocity * delta)
 
-
 func _jump():
 	_wing.play()
 	set_linear_velocity(Vector2(0.0, JUMP_FORCE))
-
 
 func _bird_rotation():
 	#Falling if velocity is greater else going upward
@@ -47,7 +44,6 @@ func _bird_rotation():
 	elif linear_velocity.y < 0 and rad_to_deg(rotation) > -30:
 		rotation = deg_to_rad(-30)
 
-
 func pipe_hit():
 	print("Stop bird functioning(pipe hit)")
 	falling_rotation_speed = 15
@@ -55,7 +51,6 @@ func pipe_hit():
 	if is_start: set_linear_velocity(Vector2(0.0, 0.0))
 	is_start = false
 	bird_hit_pipe.emit()
-
 
 func stop():
 	print("Stop bird functioning(ground hit)")
