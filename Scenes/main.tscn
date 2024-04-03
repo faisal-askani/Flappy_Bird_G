@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://7soia3snnc1i"]
+[gd_scene load_steps=38 format=3 uid="uid://7soia3snnc1i"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2kf57"]
 [ext_resource type="PackedScene" uid="uid://brrpukuikl5q6" path="res://Scenes/bird.tscn" id="1_gsb2l"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://Scripts/medals.gd" id="13_3dqhu"]
 [ext_resource type="Script" path="res://Scripts/new_label.gd" id="13_3ofjf"]
 [ext_resource type="Texture2D" uid="uid://k5lu2p75pgxb" path="res://Assets/sprites/label_get_ready.png" id="15_vkttn"]
+[ext_resource type="Texture2D" uid="uid://ul8nlyemy501" path="res://Assets/sprites/button_pause.png" id="24_58j4o"]
 
 [sub_resource type="Animation" id="Animation_6l482"]
 length = 0.001
@@ -220,10 +221,40 @@ _data = {
 "RESET": SubResource("Animation_0bdhg")
 }
 
+[sub_resource type="GDScript" id="GDScript_i7rgs"]
+script/source = "extends Control
+
+class_name PlayPause
+
+signal play_n_pause_sig
+
+@onready var play_pause = $PlayPauseBtn
+@onready var pause_screen = $PauseScreen
+var _pause = true
+var _play = false
+
+func _on_play_pause_btn_pressed():
+	if _pause:
+		print(\"pause is pressed\")
+		play_pause.texture_normal = load(\"res://Assets/sprites/button_resume.png\")
+		_pause_n_play(true)
+	elif _play:
+		print(\"play is pressed\")
+		play_pause.texture_normal = load(\"res://Assets/sprites/button_pause.png\")
+		_pause_n_play(false)
+
+func _pause_n_play(value):
+	play_n_pause_sig.emit()
+	_play=!_play
+	_pause=!_pause
+	get_tree().set_pause(value)
+	pause_screen.set_visible(value)
+"
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2kf57")
 metadata/_edit_vertical_guides_ = [-360.0, 360.0, 720.0, 1080.0, -1080.0, -720.0, 576.0, 208.0]
-metadata/_edit_horizontal_guides_ = [512.0, 632.0, 576.0, -640.0, 552.0, 1280.0]
+metadata/_edit_horizontal_guides_ = [512.0, 632.0, 576.0, -640.0, 552.0, 1280.0, 88.0]
 
 [node name="Backgrounds" type="Node2D" parent="."]
 position = Vector2(-1.52588e-05, -3.05176e-05)
@@ -324,6 +355,7 @@ metadata/_edit_lock_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+z_index = 2
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -338,7 +370,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 4
 theme_override_fonts/font = ExtResource("5_vbd4g")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 120
 text = "0"
 horizontal_alignment = 1
 script = ExtResource("6_dj7ub")
@@ -431,7 +463,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("5_vbd4g")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 75
 text = "0"
 horizontal_alignment = 2
 script = ExtResource("10_55pab")
@@ -445,16 +477,16 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -224.0
-offset_top = 46.75
+offset_top = 42.25
 offset_right = -54.0
-offset_bottom = 100.75
+offset_bottom = 121.25
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("5_vbd4g")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 75
 text = "0"
 horizontal_alignment = 2
 script = ExtResource("11_mb7q5")
@@ -468,9 +500,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -224.0
+offset_left = -232.0
 offset_top = 3.75
-offset_right = -136.0
+offset_right = -144.0
 offset_bottom = 36.75
 grow_horizontal = 0
 grow_vertical = 2
@@ -518,6 +550,7 @@ libraries = {
 }
 
 [node name="Tap" type="Control" parent="CanvasLayer"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -571,6 +604,45 @@ libraries = {
 "": SubResource("AnimationLibrary_hrqc0")
 }
 
+[node name="PlayPause" type="Control" parent="CanvasLayer"]
+process_mode = 3
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 184.0
+script = SubResource("GDScript_i7rgs")
+
+[node name="PlayPauseBtn" type="TextureButton" parent="CanvasLayer/PlayPause"]
+top_level = true
+z_index = 9
+layout_mode = 1
+offset_left = 48.0
+offset_top = 88.0
+offset_right = 61.0
+offset_bottom = 102.0
+scale = Vector2(5, 5)
+action_mode = 0
+texture_normal = ExtResource("24_58j4o")
+
+[node name="PauseScreen" type="ColorRect" parent="CanvasLayer/PlayPause"]
+visible = false
+custom_minimum_size = Vector2(2000, 2000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -92.0
+offset_right = 2448.0
+offset_bottom = 1908.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34902)
+
 [connection signal="pressed" from="CanvasLayer/GameOver/VBoxContainer/HBoxContainer/PlayButton" to="CanvasLayer/GameOver/VBoxContainer/HBoxContainer/PlayButton" method="_on_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Tap/AnimationPlayer" to="Ground1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Tap/AnimationPlayer" to="CanvasLayer/Tap" method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/PlayPause/PlayPauseBtn" to="CanvasLayer/PlayPause" method="_on_play_pause_btn_pressed"]

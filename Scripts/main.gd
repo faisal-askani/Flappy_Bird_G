@@ -65,7 +65,7 @@ func _create_pipes():
 	var height = _pipe_calculation()
 	bottom_pipe.scale.y = height - gap_size * 0.5
 	top_pipe.scale.y = total_height - height - gap_size * 0.5
-	top_pipe_out_screen.scale.y = 10
+	top_pipe_out_screen.scale.y = 20
 	
 	pipe_head_bottom.position = Vector2(512, 640 - 64 * bottom_pipe.scale.y)
 	pipe_head_top.position = Vector2(512, -640 + 64 * top_pipe.scale.y)

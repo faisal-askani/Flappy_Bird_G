@@ -10,24 +10,35 @@ const JUMP_FORCE = -750.0
 @export var falling_rotation_speed = 5
 @export var rising_rotation_speed = 20
 
+@onready var _play_pause = $"../CanvasLayer/PlayPause" 
 @onready var anim = $AnimationPlayer
 @onready var _wing = sound_player.get_node("WingAudioStream")
 
 var is_start = true
 var start_rotation = false
 var bird_jumped = false
+var is_pause = true
 
 func _ready():
 	anim.play("Idle")
+	print("play_pause: ", _play_pause)
+	_play_pause.connect("play_n_pause_sig", _jump_bool_alter)
+
+func _jump_bool_alter():
+	is_pause = false
+	print("_jump_bool_alter pause is: ", is_pause)
 
 func _process(delta):
-	if Input.is_action_just_pressed("jump") and is_start:
-		if !bird_jumped:
-			anim.play("Flap")
-			bird_jumped_sig.emit()
-			bird_jumped = true
-		start_rotation = true
-		_jump()
+	if is_pause:
+		if Input.is_action_just_pressed("jump") and is_start:
+			if !bird_jumped:
+				anim.play("Flap")
+				bird_jumped_sig.emit()
+				bird_jumped = true
+			start_rotation = true
+			print("is_pause: ", is_pause)
+			_jump()
+	is_pause = true
 	
 	if start_rotation:
 		_bird_rotation()
