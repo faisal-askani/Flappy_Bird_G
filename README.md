@@ -2,7 +2,7 @@
 
 This is a simple implementation of the classic Flappy Bird game for mobile, built using the Godot game engine. The game features the familiar gameplay of navigating a bird through obstacles by tapping the screen to make the bird flap its wings.
 
-<img src="url_to_your_image.jpg" alt="Alt Text" width="200" height="300">
+<img src="sample_image.gif" width="200" height="300">
 
 ## Gameplay
 
